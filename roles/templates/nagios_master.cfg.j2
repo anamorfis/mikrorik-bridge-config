@@ -1,0 +1,50 @@
+### Hosts
+define host{
+	use			generic-host		; Name of host template to use
+
+	host_name	    mikrotik_M_{{ item.ssid }}
+	parents			mikrotik_M_{{ item.ssid }}
+	alias			Mikrotik master {{ item.ssid }}
+	address			{{ item.master_ip }}
+	check_command		check-host-alive
+	max_check_attempts	10
+	notification_interval	90
+	notification_period	24x7
+	notification_options	d,u,r
+	contact_groups		tp_jabberconf
+	}
+
+### Services
+define service{
+	use				generic-service		; Name of service template to use
+
+	host_name			mikrotik_M_{{ item.ssid }}
+	service_description		Ping
+	is_volatile			0
+	check_period			24x7
+	max_check_attempts		3
+	check_interval       		3
+	retry_check_interval		1
+	contact_groups			tp_jabberconf
+	notification_interval		120
+	notification_period		24x7
+	notification_options		w,u,c,r
+	check_command			check_ping!500.0,20%!1000.0,60%
+	}
+
+### Hostinfo
+define hostextinfo{
+host_name mikrotik_M_{{ item.ssid }}
+icon_image wireless.png
+icon_image_alt mikrotik
+vrml_image wireless.png
+statusmap_image wireless.png
+}
+
+### Serviceinfo
+define serviceextinfo{
+host_name mikrotik_M_{{ item.ssid }}
+service_description Ping
+icon_image firewall.gif
+}
+

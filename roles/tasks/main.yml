@@ -1,0 +1,24 @@
+---
+- name: Generate mikrotik master config
+  template:
+    src: "mikrotik_master.rsc.j2"
+    dest: "{{ mikroikt_config_path }}/mikrotik_master_{{ item.ssid }}.rsc"
+  with_items: "{{ mikrotik }}"
+
+- name: Generate mikrotik slave config
+  template:
+    src: "mikrotik_slave.rsc.j2"
+    dest: "{{ mikroikt_config_path }}/mikrotik_slave_{{ item.ssid }}.rsc"
+  with_items: "{{ mikrotik }}"
+
+- name: Generate nagios slave config
+  template:
+    src: "nagios_slave.cfg.j2"
+    dest: "{{ nagios_config_path }}/mikrotik_S_{{ item.ssid }}.cfg"
+  with_items: "{{ mikrotik }}"
+
+- name: Generate nagios master config
+  template:
+    src: "nagios_master.cfg.j2"
+    dest: "{{ nagios_config_path }}/mikrotik_M_{{ item.ssid }}.cfg"
+  with_items: "{{ mikrotik }}"

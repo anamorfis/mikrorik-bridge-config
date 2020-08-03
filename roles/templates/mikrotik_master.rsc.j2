@@ -1,0 +1,49 @@
+/interface bridge {
+add name=bridge1 protocol-mode=none
+set bridge1 auto-mac=no admin-mac=[get bridge1 mac-address]
+}
+/interface wireless
+set [ find default-name=wlan1 ] adaptive-noise-immunity=ap-and-client-mode \
+    antenna-gain=0 band=5ghz-onlyn basic-rates-a/g="" channel-width=\
+    20/40mhz-Ce country=no_country_set disabled=no frequency={{ item.frequency }} \
+    frequency-mode=superchannel guard-interval=long hw-retries=15 mode=bridge \
+    nv2-cell-radius=10 nv2-downlink-ratio=80 nv2-preshared-key={{ item.nv2_security }} \
+    nv2-security=enabled radio-name={{ item.ssid }} rate-set=configured ssid=\
+    {{ item.ssid }} supported-rates-a/g="" tx-power=17 tx-power-mode=\
+    all-rates-fixed wds-default-bridge=bridge1 wds-mode=dynamic \
+    wireless-protocol=nv2
+/interface wireless nstreme
+set wlan1 enable-nstreme=yes
+/interface vlan
+add interface=bridge1 name=vlan2008 vlan-id=2008
+/interface wireless security-profiles
+set [ find default=yes ] authentication-types=wpa2-psk mode=dynamic-keys \
+    supplicant-identity=MikroTik wpa2-pre-shared-key={{ item.wpa2_key }}
+/interface bridge port
+add bridge=bridge1 interface=wlan1
+add bridge=bridge1 interface=ether1
+/ip neighbor discovery-settings
+set discover-interface-list=none
+/ip address
+add address={{ item.master_ip }}/24 interface=vlan2008
+/ip dns
+set allow-remote-requests=no
+/ip route
+add distance=1 gateway={{ item.gateway }}
+/ip service
+set telnet disabled=yes
+set ftp disabled=yes
+set api disabled=yes
+set api-ssl disabled=yes
+/ip ssh
+set allow-none-crypto=yes forwarding-enabled=remote
+/system leds
+add interface=ether1 leds=user-led type=interface-activity
+/system identity
+set name=master_{{ item.ssid }}
+/system ntp client
+set enabled=yes primary-ntp=192.168.10.1 secondary-ntp=192.168.11.3
+/system clock
+set time-zone-name=Europe/Samara
+/system routerboard settings
+set boot-device=try-ethernet-once-then-nand

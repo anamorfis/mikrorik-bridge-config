@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    - mikroikt_config_path: ./mikrotik
+    - nagios_config_path: ./nagios
+
+  roles:
+    - mikrorik-bridge-config
