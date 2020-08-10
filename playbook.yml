@@ -4,8 +4,8 @@
   gather_facts: false
 
   vars:
-    - mikroikt_config_path: ./mikrotik
-    - nagios_config_path: ./nagios
+    - mikroikt_config_path: ./config/mikrotik
+    - nagios_config_path: ./config/nagios
 
   roles:
     - mikrorik-bridge-config
