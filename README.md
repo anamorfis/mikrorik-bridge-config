@@ -7,6 +7,7 @@
 # Настройки
 `vars.yml` редактируются переменные в которых указываются необходимые параметры для работы радиомоста:
 
+
 ```
 - { frequency: 5825, ssid: test_wireless, master_ip: 172.16.31.1, slave_ip: 172.16.31.2, gateway: 172.16.31.13, nv2_security: nv2pass1234, wpa2_key: wpa2pass1234 }
 ```
