@@ -1,5 +1,10 @@
 ---
 
 mikrotik:
-  - { frequency: 5825, ssid: test_wireless, master_ip: 172.16.31.1, slave_ip: 172.16.31.2, gateway: 172.16.31.13, nv2_security: blabla123, wpa2_key: dgdsgdskkksdksk }
-
+#  - { frequency: 5825, ssid: yukamenskaya, master_ip: 10.130.9.17, slave_ip: 10.130.9.18, gateway: 192.168.8.1, nv2_security: blabla123, wpa2_key: dgdsgdskkksdksk }
+#  - { frequency: 5825, ssid: 60let17-garazh, master_ip: 10.130.9.19, slave_ip: 10.130.9.20, gateway: 10.130.9.1, nv2_security: jhf2uyge128uyhw, wpa2_key: jhf2uyge128uyhw }
+#  - { frequency: 5280, ssid: 60let262, master_ip: 10.130.9.17, slave_ip: 10.130.9.18, gateway: 10.130.9.1, nv2_security: jgehkj343, wpa2_key: jhkj34hkj }
+#  - { frequency: 5825, ssid: glinki2vodokanal, master_ip: 192.168.8.206, slave_ip: 192.168.8.207, gateway: 192.168.8.1, nv2_security: blabla123, wpa2_key: dgdsgdskkksdksk }
+#  - { frequency: 5300, ssid: Pehtina8Naturalist, master_ip: 192.168.8.194, slave_ip: 192.168.8.193, gateway: 192.168.8.1, nv2_security: rehgerjrrrjjrgrhg, wpa2_key: rehgerjrrrjjrgrhg }
+#  - { frequency: 5300, ssid: kuib79kolhoznaya61, master_ip: 192.168.8.228, slave_ip: 192.168.8.227, gateway: 192.168.8.1, nv2_security: 13ieh12iw31283, wpa2_key: 13ieh12iw31283 }
+  - { frequency: 5765, ssid: Pehtina8Sibirskaya129a, master_ip: 192.168.8.192, slave_ip: 192.168.8.191, gateway: 192.168.8.1, nv2_security: wueuurwepqpf99399, wpa2_key: wueuurwepqpf99399 }
